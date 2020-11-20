@@ -24,16 +24,16 @@ button:disabled {
   background: transparent;
   color: black;
 }
-.slider {
+.slider-innerWrap {
   overflow: hidden;
   border: 2px solid black;
   height: 300px;
   position: relative;
 }
-.slider ul {
+.slider-innerWrap ul {
   position: absolute;
 }
-.slider ul > li {
+.slider-innerWrap ul > li {
   float: left;
 }
 .slider_wrap {
