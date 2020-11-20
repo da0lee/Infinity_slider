@@ -1,7 +1,22 @@
-const Slider = function (target) {
-  window.onload = () => {
+const Slider = function (selectedTarget, option) {
+  (() => {
+    const sliderImgs = document.querySelectorAll(`${selectedTarget} img`);
+    let loadedImgs = 0;
+    for (let i = 0; i < sliderImgs.length; i++) {
+      sliderImgs[i].onload = () => {
+        loadedImgs += 1;
+        if (loadedImgs === sliderImgs.length) {
+          sliderManager(selectedTarget, option);
+        } else {
+          return;
+        }
+      };
+    }
+  })();
+
+  const sliderManager = (selectedTarget, option) => {
     // 사용자가 Slider 호출하면 slider 동작에 필요한 tag들 생성
-    const slider = document.querySelector(target);
+    const slider = document.querySelector(selectedTarget);
     const slideLis = slider.querySelectorAll('li');
     // wrapper 생성
     const sliderInnerWrap = document.createElement('div');
@@ -41,12 +56,12 @@ const Slider = function (target) {
     const INIT_INDEX = 1;
     let leftPosition = INIT_POSITION;
     let currentIndex = INIT_INDEX;
-    let transitionDuration = 300;
-    slider.style.transition = `all ${transitionDuration}ms ease`;
+    let transitionDuration = option.transitionDuration;
+    slider.style.transition = `all ${transitionDuration}ms ${option.transitionTiming}`;
     slider.style.left = -liWidth + 'px';
 
     function moveSlider(e) {
-      slider.style.transition = `all ${transitionDuration}ms ease`;
+      slider.style.transition = `all ${transitionDuration}ms ${option.transitionTiming}`;
       preventOverClicks(e.target);
       if (e.target.className === 'next') {
         moveSliderLeft(-1);
