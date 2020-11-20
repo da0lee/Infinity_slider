@@ -9,7 +9,6 @@ li {
 img {
   display: block;
 }
-
 /* slider */
 button {
   width: 35px;
@@ -24,16 +23,16 @@ button:disabled {
   background: transparent;
   color: black;
 }
-.slider-innerWrap {
+.slider_innerWrap {
   overflow: hidden;
   border: 2px solid black;
   height: 300px;
   position: relative;
 }
-.slider-innerWrap ul {
+.slider_innerWrap .slider {
   position: absolute;
 }
-.slider-innerWrap ul > li {
+.slider_innerWrap .slider > li {
   float: left;
 }
 .slider_wrap {
